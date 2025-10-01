@@ -42,7 +42,7 @@ export default function Header() {
       `}
     >
       <nav className={`
-        mx-auto flex items-center justify-between transition-all duration-500
+        relative mx-auto flex items-center justify-between transition-all duration-500
         ${scrolled ? 'px-6 py-3' : 'px-8 py-4'}
       `} aria-label="Global">
         
@@ -75,7 +75,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:gap-x-8">
+        <div className="hidden lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:flex lg:gap-x-8">
           {navigation.map((item) => (
             <Link
               key={item.name}
