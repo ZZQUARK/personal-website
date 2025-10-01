@@ -1,524 +1,187 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import Image from 'next/image'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FileText, Calendar, Mail } from 'lucide-react';
+import React from 'react';
 
-// Hero Section Component
+// --- CSS for Shine Effect ---
+const ShineEffectCSS = () => (
+  <style jsx global>{`
+    .shine-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine-effect::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.6s ease;
+    }
+    .shine-effect:hover::before {
+      left: 100%;
+    }
+  `}</style>
+);
+
+// --- Background Blob Component ---
+const GradientBlob = ({ className }: { className: string }) => (
+  <div className={`absolute blur-3xl rounded-full opacity-20 -z-10 ${className}`} />
+);
+
+// --- HERO SECTION with Skill Badges ---
 function HeroSection() {
+  const skills = ["Product Management", "Leadership", "Startup Building", "Storytelling", "Web3 & Blockchain"];
   return (
-    <section className="min-h-screen flex items-center justify-center bg-[#f9f9f9] relative overflow-hidden">
-      {/* Background hero image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/work hero image.jpeg"
-          alt="Work Hero"
-          fill
-          className="object-cover opacity-30"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f9f9f9]/70 to-[#f9f9f9]/50"></div>
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center bg-gray-50 overflow-hidden">
+      <GradientBlob className="top-[-10rem] left-[-20rem] w-[40rem] h-[40rem] bg-gradient-to-r from-purple-400 to-indigo-500" />
+      <GradientBlob className="bottom-[-15rem] right-[-15rem] w-[35rem] h-[35rem] bg-gradient-to-r from-yellow-400 to-orange-500" />
       
+      <div className="absolute inset-0">
+        <Image src="/work hero image.jpeg" alt="Work Hero" fill className="object-cover opacity-10" priority />
+        <div className="absolute inset-0 bg-gray-50/50"></div>
+      </div>
+
       <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl mx-auto">
         <motion.h1 
-          className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-primary mb-6 lg:mb-8 leading-tight"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-800 mb-6 lg:mb-8 leading-tight"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Pixels, problems, and putting out fires.{' '}
-          <span className="text-accent-orange">I build like I give a damn.</span>
+          Pixels, problems, and putting out fires. <span className="text-indigo-600">I build like I give a damn.</span>
         </motion.h1>
-        
         <motion.p 
-          className="text-lg sm:text-xl lg:text-2xl text-text-muted max-w-3xl mx-auto leading-relaxed font-medium"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
           For almost 10 years - from scrappy MVPs to scaled systems - I've solved problems with wireframes, coffee, and controlled chaos.
         </motion.p>
-      </div>
-    </section>
-  )
-}
-
-// CTA Cards Section Component
-function CTACardsSection() {
-  const ctaCards = [
-    {
-      id: 1,
-      icon: '📄',
-      title: 'Resume',
-      subtitle: 'Download a PDF of my resume',
-      buttonText: 'Download →',
-      action: 'download',
-      href: '/resume.pdf'
-    },
-    {
-      id: 2,
-      icon: '🧠',
-      title: 'Past Projects',
-      subtitle: '10+ years of work, condensed into sharp case studies',
-      buttonText: 'Explore →',
-      action: 'scroll',
-      href: '#past-projects'
-    },
-    {
-      id: 3,
-      icon: '🚧',
-      title: 'Currently Doing',
-      subtitle: 'Projects I\'m building right now - deep work in progress',
-      buttonText: 'Check it out →',
-      action: 'scroll',
-      href: '#current-projects'
-    }
-  ]
-
-  const handleCardClick = (card: any) => {
-    if (card.action === 'scroll') {
-      const element = document.querySelector(card.href)
-      element?.scrollIntoView({ behavior: 'smooth' })
-    } else if (card.action === 'download') {
-      window.open(card.href, '_blank')
-    }
-  }
-
-  return (
-    <section className="py-16 lg:py-24 bg-white">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, staggerChildren: 0.1 }}
-          viewport={{ once: true }}
+          className="mt-10 flex flex-wrap justify-center gap-3"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          {ctaCards.map((card) => (
-            <motion.div
-              key={card.id}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 cursor-pointer group"
-              whileHover={{ 
-                y: -8, 
-                scale: 1.02,
-                boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
-              }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => handleCardClick(card)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <motion.div 
-                className="text-4xl mb-4"
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2 }}
-              >
-                {card.icon}
-              </motion.div>
-              
-              <h3 className="font-serif text-xl lg:text-2xl font-bold text-primary mb-3">
-                {card.title}
-              </h3>
-              
-              <p className="text-text-muted mb-6 leading-relaxed">
-                {card.subtitle}
-              </p>
-              
-              <motion.button 
-                className="inline-flex items-center text-accent-orange font-medium group-hover:text-accent-orange group-hover:underline transition-all duration-300"
-                whileHover={{ x: 4 }}
-              >
-                {card.buttonText}
-              </motion.button>
-            </motion.div>
+          {skills.map(skill => (
+            <div key={skill} className="shine-effect px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 rounded-full cursor-pointer">
+              {skill}
+            </div>
           ))}
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
-// Past Projects Section Component
-function PastProjectsSection() {
-  const projects = [
-    {
-      id: 1,
-      title: "Fintech Platform Redesign",
-      summary: "Led complete UX overhaul of trading platform, increasing user engagement by 300% and reducing support tickets by 60%.",
-      tags: ["UX", "PM", "Fintech"],
-      cta: "Read Case Study →"
-    },
-    {
-      id: 2,
-      title: "E-commerce Mobile App",
-      summary: "Built 0-to-1 mobile shopping experience for 2M+ users, achieving 4.8 app store rating and $50M+ GMV.",
-      tags: ["Product", "Mobile", "E-commerce"],
-      cta: "Read Case Study →"
-    },
-    {
-      id: 3,
-      title: "B2B SaaS Dashboard",
-      summary: "Designed data-heavy analytics platform used by Fortune 500 companies, improving decision-making speed by 80%.",
-      tags: ["SaaS", "Analytics", "B2B"],
-      cta: "Read Case Study →"
-    }
-  ]
+// --- POLISHED PROFESSIONAL LINKS SECTION ---
+const professionalLinks = [
+  { title: 'Resume', href: 'https://www.toptal.com/resume/akshit-kumar', icon: FileText, gradient: 'from-sky-400 to-blue-500' },
+  { title: 'Schedule a Meeting', href: 'https://calendar.app.google/SBbw8zx79xqz3G8o8', icon: Calendar, gradient: 'from-purple-400 to-indigo-500' },
+  { title: 'Email Me', href: 'mailto:ak@akshitkumar.com', icon: Mail, gradient: 'from-orange-400 to-red-500' },
+];
+
+function ProfessionalLinksSection() {
+  const cardVariants = { hidden: { opacity: 0, y: 20 }, visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' } }) };
 
   return (
-    <section id="past-projects" className="py-16 lg:py-24 bg-[#f9f9f9]">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <motion.div 
-          className="text-center mb-12 lg:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="font-serif text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Case Studies: The Greatest Hits
-          </h2>
-          <p className="text-lg lg:text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
-            Some of my most meaningful builds and messiest wins.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="space-y-8 lg:space-y-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, staggerChildren: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${
-                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-              }`}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="lg:w-1/2">
-                <div className="bg-gradient-to-br from-accent-orange/10 to-pink-500/10 rounded-2xl p-8 h-64 flex items-center justify-center">
-                  <span className="text-6xl">🚀</span>
-                </div>
-              </div>
-              
-              <div className="lg:w-1/2 text-center lg:text-left">
-                <h3 className="font-serif text-2xl lg:text-3xl font-bold text-primary mb-4">
-                  {project.title}
-                </h3>
-                
-                <p className="text-text-muted mb-6 leading-relaxed text-lg">
-                  {project.summary}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-6 justify-center lg:justify-start">
-                  {project.tags.map((tag) => (
-                    <span 
-                      key={tag}
-                      className="px-3 py-1 bg-accent-orange/10 text-accent-orange rounded-full text-sm font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <motion.button 
-                  className="btn-primary"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {project.cta}
-                </motion.button>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// Currently Doing Section Component
-function CurrentProjectsSection() {
-  const currentProjects = [
-    {
-      id: 1,
-      name: "Journaling App",
-      summary: "Building a mindful journaling experience that adapts to your writing style and helps surface insights from your thoughts.",
-      status: "In Design",
-      statusColor: "bg-blue-100 text-blue-800"
-    },
-    {
-      id: 2,
-      name: "Quibbi",
-      summary: "A micro-learning platform that breaks complex topics into bite-sized, interactive lessons you can complete in under 5 minutes.",
-      status: "Prototype",
-      statusColor: "bg-purple-100 text-purple-800"
-    },
-    {
-      id: 3,
-      name: "Local Discovery Tool",
-      summary: "Helping people find hidden gems in their neighborhood through AI-powered recommendations and community insights.",
-      status: "Testing",
-      statusColor: "bg-green-100 text-green-800"
-    }
-  ]
-
-  return (
-    <section id="current-projects" className="py-16 lg:py-24 bg-white">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <motion.div 
-          className="text-center mb-12 lg:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="inline-flex items-center gap-2 mb-4">
-            <span className="text-2xl">🚧</span>
-            <span className="px-3 py-1 bg-accent-orange/10 text-accent-orange rounded-full text-sm font-medium">
-              Work In Progress
-            </span>
-          </div>
-          <h2 className="font-serif text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Currently Shipping
-          </h2>
-          <p className="text-lg lg:text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
-            Active projects, experiments, and work in progress.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, staggerChildren: 0.1 }}
-          viewport={{ once: true }}
-        >
-          {currentProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 group cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                y: -5, 
-                scale: 1.02,
-                boxShadow: "0 15px 30px rgba(0,0,0,0.1)"
-              }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="font-serif text-xl font-bold text-primary">
-                  {project.name}
-                </h3>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${project.statusColor}`}>
-                  {project.status}
-                </span>
-              </div>
-              
-              <p className="text-text-muted mb-6 leading-relaxed">
-                {project.summary}
-              </p>
-              
-              <motion.button 
-                className="text-accent-orange font-medium group-hover:underline transition-all duration-300"
-                whileHover={{ x: 4 }}
-              >
-                See More →
-              </motion.button>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// Hit Me Up CTA Section Component
-function HitMeUpSection() {
-  return (
-    <section className="py-16 lg:py-20 bg-[#1a1a1a]">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="font-serif text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-            Got a product idea, UI chaos, or startup spiral?
-          </h2>
-          <p className="text-xl lg:text-2xl text-gray-300 mb-8">
-            Let's untangle it together.
-          </p>
-          
-          <motion.a
-            href="mailto:akshit@example.com"
-            className="inline-flex items-center gap-2 bg-accent-orange text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Image src="/gmail.png" alt="Email" width={20} height={20} className="h-5 w-5" />
-            Drop me a line
-          </motion.a>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// Blog Carousel Section Component
-function BlogCarouselSection() {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Product Manager's Guide to Technical Debt",
-      excerpt: "Why technical debt is a product decision, not just an engineering problem.",
-      tags: ["Product", "Tech"],
-      thumbnail: "/blog-1.jpg"
-    },
-    {
-      id: 2,
-      title: "Designing for Mobile-First in 2024",
-      excerpt: "Mobile isn't just smaller screens - it's a fundamentally different user context.",
-      tags: ["UI/UX", "Tech"],
-      thumbnail: "/blog-2.jpg"
-    },
-    {
-      id: 3,
-      title: "Why Most Startups Fail at User Research",
-      excerpt: "The difference between asking users what they want and understanding what they need.",
-      tags: ["Product", "UI/UX"],
-      thumbnail: "/blog-3.jpg"
-    }
-  ]
-
-  return (
-    <section className="py-16 lg:py-24 bg-[#f9f9f9]">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <motion.div 
-          className="text-center mb-12 lg:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="font-serif text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Blog Picks: Product, Tech & UX
-          </h2>
-          <p className="text-lg lg:text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
-            Thoughts on what we build, why it breaks, and how we fix it.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12 lg:mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, staggerChildren: 0.1 }}
-          viewport={{ once: true }}
-        >
-          {blogPosts.map((post) => (
-            <motion.div
-              key={post.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 group cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ 
-                y: -5, 
-                scale: 1.02,
-                boxShadow: "0 15px 30px rgba(0,0,0,0.1)"
-              }}
-              viewport={{ once: true }}
-            >
-              <div className="relative h-48 bg-gradient-to-br from-accent-orange/20 to-pink-500/20">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-4xl">📝</span>
-                </div>
-              </div>
-              
-              <div className="p-6">
-                <h3 className="font-serif text-xl font-bold text-primary mb-3 group-hover:text-accent-orange transition-colors duration-300">
-                  {post.title}
-                </h3>
-                
-                <p className="text-text-muted mb-4 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.map((tag) => (
-                    <span 
-                      key={tag}
-                      className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs font-medium"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-                
+    <section className="relative py-20 lg:py-24 bg-white overflow-hidden">
+      <GradientBlob className="top-1/2 left-[-25rem] -translate-y-1/2 w-[50rem] h-[50rem] bg-gray-200/50" />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Professional Links</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {professionalLinks.map((link, i) => (
+            <motion.div key={link.title} custom={i} variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+              <Link href={link.href} target="_blank" rel="noopener noreferrer" className="block h-full">
                 <motion.div 
-                  className="flex items-center text-accent-orange font-medium group-hover:underline"
-                  whileHover={{ x: 4 }}
+                  className="h-full p-8 bg-white/60 backdrop-blur-lg rounded-xl shadow-lg border border-gray-200/80 flex flex-col justify-center items-center text-center transition-all duration-300 hover:border-indigo-400/50"
+                  whileHover={{ y: -5, scale: 1.05, boxShadow: "0 15px 30px rgba(79, 70, 229, 0.1)" }}
                 >
-                  → Read More
+                  <div className={`shine-effect p-4 rounded-full bg-gradient-to-br ${link.gradient} mb-5`}>
+                    <link.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <span className="text-lg font-semibold text-gray-900">{link.title}</span>
                 </motion.div>
-              </div>
+              </Link>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-        {/* Read More CTA */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <Link 
-            href="/writing?filter=tech,product,ui-ux" 
-            className="btn-primary inline-flex items-center group"
+// --- UPDATED CURRENTLY WORKING ON SECTION ---
+function CurrentlyWorkingOnSection() {
+  const cardVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
+  const tags = ["Web3", "Blockchain", "Content", "Strategy", "Product"];
+
+  return (
+    <section className="relative py-20 lg:py-24 bg-gray-50 overflow-hidden">
+      <GradientBlob className="top-1/2 right-[-30rem] -translate-y-1/2 w-[60rem] h-[60rem] bg-indigo-200/30" />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Currently Working On</h2>
+        <motion.div className="max-w-3xl mx-auto" variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+          <motion.div
+            className="p-8 bg-white/60 backdrop-blur-lg rounded-xl shadow-lg border border-gray-200/80"
+            whileHover={{ y: -5, scale: 1.02, boxShadow: "0 15px 30px rgba(0,0,0,0.08)" }}
           >
-            <span>Read More</span>
-            <motion.svg 
-              className="ml-2 h-4 w-4" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-              whileHover={{ x: 5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </motion.svg>
-          </Link>
+            <div className="relative h-20 w-full rounded-lg mb-6 overflow-hidden">
+              <Image src="/rcs logo.png" alt="Right Click Save Logo" layout="fill" objectFit="contain" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">Right Click Save</h3>
+            <p className="text-gray-600 mb-5 leading-relaxed">At Right Click Save, I help shape the future of digital culture. My work spans Web3 strategy, editorial storytelling, and product experiments at the intersection of art and blockchain. From thought pieces to community-driven projects, I build bridges between creators, collectors, and new technologies.</p>
+            <div className="flex flex-wrap gap-3">
+              {tags.map(tag => (
+                <span key={tag} className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
-// Main Work Page Component
+// --- POLISHED SIDE PROJECTS SECTION ---
+function SideProjectsSection() {
+  const cardVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
+
+  return (
+    <section className="relative py-20 lg:py-24 bg-white overflow-hidden">
+      <GradientBlob className="bottom-[-10rem] left-[-20rem] w-[50rem] h-[50rem] bg-orange-200/30" />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Side Projects</h2>
+        <motion.div className="max-w-2xl mx-auto" variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
+          <div className="rounded-xl shadow-2xl overflow-hidden group relative border border-gray-200/80">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
+            <div className="absolute top-4 left-4 z-20">
+              <span className="px-3 py-1 bg-yellow-400 text-black rounded-full text-xs font-bold uppercase tracking-wider">Coming Soon</span>
+            </div>
+            <Image src="/writeclique-teaser.png" alt="WriteClique Teaser" width={1024} height={576} className="w-full h-auto" />
+          </div>
+          <div className="text-center mt-8">
+            <h3 className="text-2xl font-bold text-gray-900">WriteClique</h3>
+            <p className="mt-2 text-gray-600 max-w-lg mx-auto">WriteClique is your AI writing partner — from first draft to flawless fiction. Launching soon.</p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// --- MAIN PAGE COMPONENT ---
 export default function WorkPage() {
   return (
-    <main className="min-h-screen">
-      <Header />
+    <main className="min-h-screen bg-gray-50">
+      <ShineEffectCSS />
       <HeroSection />
-      <CTACardsSection />
-      <PastProjectsSection />
-      <CurrentProjectsSection />
-      <HitMeUpSection />
-      <BlogCarouselSection />
-      <Footer />
+      <ProfessionalLinksSection />
+      <CurrentlyWorkingOnSection />
+      <SideProjectsSection />
     </main>
-  )
+  );
 }
