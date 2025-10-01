@@ -48,9 +48,9 @@ export default function Footer() {
             
             {/* Social Icons */}
             <div className="flex items-center justify-center lg:justify-end gap-4">
-                <a href="mailto:your-email@gmail.com" className="text-gray-400 hover:text-white transition-colors"><Mail size={20} /></a>
-                <a href="https://twitter.com/yourusername" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
-                <a href="https://instagram.com/yourusername" className="text-gray-400 hover:text-white transition-colors"><Instagram size={20} /></a>
+                <a href="mailto:ak@akshitkumar.com" className="text-gray-400 hover:text-white transition-colors"><Mail size={20} /></a>
+                <a href="https://twitter.com/zigzagquark" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
+                <a href="https://instagram.com/zigzagquark" className="text-gray-400 hover:text-white transition-colors"><Instagram size={20} /></a>
                 <a href="https://yourusername.substack.com" className="text-gray-400 hover:text-white transition-colors"><Newspaper size={20} /></a>
             </div>
           </motion.div>

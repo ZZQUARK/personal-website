@@ -15,13 +15,13 @@ const navigation = [
 
 const SocialLinks = () => (
   <div className="flex items-center space-x-4">
-    <motion.a whileHover={{ scale: 1.1 }} href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors">
+    <motion.a whileHover={{ scale: 1.1 }} href="https://twitter.com/zigzagquark" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors">
       <Twitter size={20} />
     </motion.a>
-    <motion.a whileHover={{ scale: 1.1 }} href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors">
+    <motion.a whileHover={{ scale: 1.1 }} href="https://instagram.com/zigzagquark" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors">
       <Instagram size={20} />
     </motion.a>
-    <motion.a whileHover={{ scale: 1.1 }} href="mailto:your-email@gmail.com" className="text-gray-600 hover:text-indigo-600 transition-colors">
+    <motion.a whileHover={{ scale: 1.1 }} href="mailto:ak@akshitkumar.com" className="text-gray-600 hover:text-indigo-600 transition-colors">
       <Mail size={20} />
     </motion.a>
   </div>

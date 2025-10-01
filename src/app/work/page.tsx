@@ -17,48 +17,49 @@ const ShineEffectCSS = () => (
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
+      left: -150%;
+      width: 50%;
       height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-      transition: left 0.6s ease;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      transform: skewX(-25deg);
+      transition: left 0.75s ease-in-out;
     }
     .shine-effect:hover::before {
-      left: 100%;
+      left: 150%;
     }
   `}</style>
 );
 
 // --- Background Blob Component ---
 const GradientBlob = ({ className }: { className: string }) => (
-  <div className={`absolute blur-3xl rounded-full opacity-20 -z-10 ${className}`} />
+  <div className={`absolute blur-3xl rounded-full opacity-30 -z-10 animate-pulse ${className}`} />
 );
 
-// --- HERO SECTION with Skill Badges ---
+// --- HERO SECTION with Updated Copy & Badges ---
 function HeroSection() {
   const skills = ["Product Management", "Leadership", "Startup Building", "Storytelling", "Web3 & Blockchain"];
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gray-50 overflow-hidden">
-      <GradientBlob className="top-[-10rem] left-[-20rem] w-[40rem] h-[40rem] bg-gradient-to-r from-purple-400 to-indigo-500" />
-      <GradientBlob className="bottom-[-15rem] right-[-15rem] w-[35rem] h-[35rem] bg-gradient-to-r from-yellow-400 to-orange-500" />
+      <GradientBlob className="top-[-10rem] left-[-20rem] w-[40rem] h-[40rem] bg-purple-300" />
+      <GradientBlob className="bottom-[-15rem] right-[-15rem] w-[35rem] h-[35rem] bg-blue-300" />
       
       <div className="absolute inset-0">
-        <Image src="/work hero image.jpeg" alt="Work Hero" fill className="object-cover opacity-10" priority />
-        <div className="absolute inset-0 bg-gray-50/50"></div>
+        <Image src="/work hero image.jpeg" alt="Work Hero" fill className="object-cover opacity-20" priority />
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-sm"></div>
       </div>
 
-      <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-6 lg:px-8 max-w-4xl mx-auto">
         <motion.h1 
-          className="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-800 mb-6 lg:mb-8 leading-tight"
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight"
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Pixels, problems, and putting out fires. <span className="text-indigo-600">I build like I give a damn.</span>
+          From messy MVPs to scaled systems, I build products with clarity, creativity, and care.
         </motion.h1>
         <motion.p 
-          className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
+          className="mt-4 text-2xl sm:text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-indigo-600"
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          For almost 10 years - from scrappy MVPs to scaled systems - I've solved problems with wireframes, coffee, and controlled chaos.
+          Simply put, I build like I give a damn.
         </motion.p>
         <motion.div 
           className="mt-10 flex flex-wrap justify-center gap-3"
@@ -87,19 +88,21 @@ function ProfessionalLinksSection() {
 
   return (
     <section className="relative py-20 lg:py-24 bg-white overflow-hidden">
-      <GradientBlob className="top-1/2 left-[-25rem] -translate-y-1/2 w-[50rem] h-[50rem] bg-gray-200/50" />
+      <GradientBlob className="top-1/2 left-[-25rem] -translate-y-1/2 w-[50rem] h-[50rem] bg-blue-200/50" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Professional Links</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {professionalLinks.map((link, i) => (
             <motion.div key={link.title} custom={i} variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
-              <Link href={link.href} target="_blank" rel="noopener noreferrer" className="block h-full">
+              <Link href={link.href} target="_blank" rel="noopener noreferrer" className="block h-full group">
                 <motion.div 
-                  className="h-full p-8 bg-white/60 backdrop-blur-lg rounded-xl shadow-lg border border-gray-200/80 flex flex-col justify-center items-center text-center transition-all duration-300 hover:border-indigo-400/50"
-                  whileHover={{ y: -5, scale: 1.05, boxShadow: "0 15px 30px rgba(79, 70, 229, 0.1)" }}
+                  className="h-full p-8 bg-white/20 backdrop-blur-md rounded-xl shadow-md border border-gray-200/50 flex flex-col justify-center items-center text-center transition-all duration-300 group-hover:border-purple-400/50"
+                  whileHover={{ y: -8, scale: 1.05, boxShadow: "0 20px 35px rgba(79, 70, 229, 0.1)" }}
                 >
-                  <div className={`shine-effect p-4 rounded-full bg-gradient-to-br ${link.gradient} mb-5`}>
-                    <link.icon className="w-8 h-8 text-white" />
+                  <div className={`relative p-4 rounded-full bg-gradient-to-br ${link.gradient} mb-5 shadow-inner`}>
+                     <div className="shine-effect w-8 h-8">
+                        <link.icon className="w-full h-full text-white" />
+                     </div>
                   </div>
                   <span className="text-lg font-semibold text-gray-900">{link.title}</span>
                 </motion.div>
@@ -119,22 +122,22 @@ function CurrentlyWorkingOnSection() {
 
   return (
     <section className="relative py-20 lg:py-24 bg-gray-50 overflow-hidden">
-      <GradientBlob className="top-1/2 right-[-30rem] -translate-y-1/2 w-[60rem] h-[60rem] bg-indigo-200/30" />
+      <GradientBlob className="top-1/2 right-[-30rem] -translate-y-1/2 w-[60rem] h-[60rem] bg-pink-300/50" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Currently Working On</h2>
         <motion.div className="max-w-3xl mx-auto" variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
           <motion.div
-            className="p-8 bg-white/60 backdrop-blur-lg rounded-xl shadow-lg border border-gray-200/80"
-            whileHover={{ y: -5, scale: 1.02, boxShadow: "0 15px 30px rgba(0,0,0,0.08)" }}
+            className="p-8 bg-white/30 backdrop-blur-lg rounded-xl shadow-lg border border-gray-200/50 bg-gradient-to-br from-white/30 to-white/10"
+            whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 35px rgba(0,0,0,0.08)" }}
           >
-            <div className="relative h-20 w-full rounded-lg mb-6 overflow-hidden">
-              <Image src="/rcs logo.png" alt="Right Click Save Logo" layout="fill" objectFit="contain" />
+            <div className="p-2 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 mb-6 shadow-inner">
+                <Image src="/rcs logo.png" alt="Right Click Save Logo" width={1280} height={400} className="rounded-lg" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-3">Right Click Save</h3>
             <p className="text-gray-600 mb-5 leading-relaxed">At Right Click Save, I help shape the future of digital culture. My work spans Web3 strategy, editorial storytelling, and product experiments at the intersection of art and blockchain. From thought pieces to community-driven projects, I build bridges between creators, collectors, and new technologies.</p>
             <div className="flex flex-wrap gap-3">
               {tags.map(tag => (
-                <span key={tag} className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full">
+                <span key={tag} className="shine-effect px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full">
                   {tag}
                 </span>
               ))}
@@ -152,17 +155,20 @@ function SideProjectsSection() {
 
   return (
     <section className="relative py-20 lg:py-24 bg-white overflow-hidden">
-      <GradientBlob className="bottom-[-10rem] left-[-20rem] w-[50rem] h-[50rem] bg-orange-200/30" />
+      <GradientBlob className="bottom-[-10rem] left-[-20rem] w-[50rem] h-[50rem] bg-orange-300/50" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Side Projects</h2>
         <motion.div className="max-w-2xl mx-auto" variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
-          <div className="rounded-xl shadow-2xl overflow-hidden group relative border border-gray-200/80">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
+          <motion.div 
+            className="rounded-xl shadow-2xl overflow-hidden group relative border border-gray-200/50"
+            whileHover={{ scale: 1.02, y: -5 }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent z-10" />
             <div className="absolute top-4 left-4 z-20">
               <span className="px-3 py-1 bg-yellow-400 text-black rounded-full text-xs font-bold uppercase tracking-wider">Coming Soon</span>
             </div>
-            <Image src="/writeclique-teaser.png" alt="WriteClique Teaser" width={1024} height={576} className="w-full h-auto" />
-          </div>
+            <Image src="/writeclique-teaser.png" alt="WriteClique Teaser" width={1024} height={576} className="w-full h-auto transition-transform duration-500 group-hover:scale-105" />
+          </motion.div>
           <div className="text-center mt-8">
             <h3 className="text-2xl font-bold text-gray-900">WriteClique</h3>
             <p className="mt-2 text-gray-600 max-w-lg mx-auto">WriteClique is your AI writing partner — from first draft to flawless fiction. Launching soon.</p>
