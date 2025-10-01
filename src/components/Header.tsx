@@ -1,17 +1,16 @@
-'use client'
+'''use client'''
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { motion } from 'framer-motion'
 
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Work', href: '/work' },
   { name: 'Writing', href: '/writing' },
   { name: 'Adventures', href: '/adventures' },
-  { name: 'Newsletter', href: '/newsletter' },
-  { name: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {
@@ -29,7 +28,10 @@ export default function Header() {
   }, [])
 
   return (
-    <header 
+    <motion.header 
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`
         fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out
         ${scrolled 
@@ -197,6 +199,6 @@ export default function Header() {
           </div>
         </div>
       )}
-    </header>
+    </motion.header>
   )
 }

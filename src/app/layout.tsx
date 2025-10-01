@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
 }
 
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
 export default function RootLayout({
   children,
 }: {
@@ -29,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="font-sans antialiased">
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )
