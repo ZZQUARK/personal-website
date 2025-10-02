@@ -4,7 +4,7 @@ const nextConfig = {
     mdxRs: true,
   },
   images: {
-    domains: ['images.unsplash.com', 'cdn.sanity.io'],
+    domains: ['images.unsplash.com', 'cdn.sanity.io', 'covers.openlibrary.org'],
   },
 }
 
