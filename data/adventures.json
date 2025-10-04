@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Indrahar Pass 30K Trail Run",
+    "slug": "indrahar-pass-30k",
+    "location": "Dharamshala, Himachal Pradesh, India",
+    "country": "India",
+    "lat": 32.2479,
+    "lon": 76.3215,
+    "date": "2025-10-02",
+    "tags": ["Trail Run", "Solo", "Mountains"],
+    "coverImage": "/images/adventures/indrahar.jpg",
+    "summary": "A 30K run from Dharamkot to the mighty Indrahar Pass — where air thins and time slows.",
+    "contentUrl": "/adventures/indrahar-pass-30k"
+  },
+  {
+    "title": "Nordkette Ridge Hike",
+    "slug": "nordkette-ridge",
+    "location": "Innsbruck, Austria",
+    "country": "Austria",
+    "lat": 47.3061,
+    "lon": 11.3775,
+    "date": "2024-09-14",
+    "tags": ["Hike", "Alps", "Solo"],
+    "coverImage": "/images/adventures/nordkette.jpg",
+    "summary": "A solo scramble above Innsbruck — clouds, cliffs, and quiet beyond the city hum.",
+    "contentUrl": "/adventures/nordkette-ridge"
+  },
+  {
+    "title": "Chiang Mai Trail Ultra 50K",
+    "slug": "chiang-mai-trail-ultra",
+    "location": "Chiang Mai, Thailand",
+    "country": "Thailand",
+    "lat": 18.7883,
+    "lon": 98.9853,
+    "date": "2023-12-11",
+    "tags": ["Ultra Run", "Asia", "Mountains"],
+    "coverImage": "/images/adventures/chiangmai.jpg",
+    "summary": "50K of humid madness through the lush Chiang Mai hills — where every kilometer dripped with life.",
+    "contentUrl": "/adventures/chiang-mai-trail-ultra"
+  }
+]
