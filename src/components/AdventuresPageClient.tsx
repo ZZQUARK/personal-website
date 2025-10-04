@@ -48,8 +48,8 @@ function TurnUpTeaserSection() {
       </p>
       
       <div className="flex flex-wrap justify-center gap-12 mb-8">
-        <Stat title="Runs Logged" value={0} icon="🏃" subline="Weekly Mileage: 0 km" colorClass="text-indigo-500" />
-        <Stat title="Lifts Logged" value={0} icon="🏋️" subline="Current Focus: Functional Strength & Mobility" colorClass="text-orange-500" />
+        <Stat title="Runs Logged" value={0} icon="🏃" subline={<>Last Week's Mileage: 50 km <span className="text-green-500">↑</span></>} colorClass="text-indigo-500" />
+        <Stat title="Lifts Logged" value={0} icon="🏋️" subline={<>Weekly Total Lift: 5000 kg <span className="text-green-500">↑</span></>} colorClass="text-orange-500" />
         <Stat title="Climbs Logged" value={0} icon="🧗" subline="Currently climbing: 6B+ sport, 6A boulder" colorClass="text-emerald-500" />
       </div>
 
