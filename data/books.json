@@ -1,0 +1,39 @@
+{
+  "fiction": [
+    {
+      "id": 1,
+      "title": "The Three-Body Problem",
+      "author": "Cixin Liu",
+      "isbn": "9780765382030",
+      "review": "A masterclass in hard sci-fi that stretches the imagination.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "title": "Klara and the Sun",
+      "author": "Kazuo Ishiguro",
+      "isbn": "9780593318171",
+      "review": "A haunting meditation on consciousness and love.",
+      "rating": 4
+    }
+  ],
+  "nonFiction": [
+    {
+      "id": 3,
+      "title": "The Creative Act",
+      "author": "Rick Rubin",
+      "isbn": "9780593652886",
+      "review": "A meditative guide to creativity as a way of life.",
+      "rating": 5
+    }
+  ],
+  "currentlyReading": [
+    {
+      "id": 4,
+      "title": "Project Hail Mary",
+      "author": "Andy Weir",
+      "isbn": "9780593135204",
+      "format": "audiobook"
+    }
+  ]
+}

@@ -6,18 +6,10 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Star, X, Search } from 'lucide-react';
 
-// --- DATA ---
-const allBooks = [
-  { id: 1, title: 'The Three-Body Problem', author: 'Cixin Liu', rating: 5, format: 'eBook', review: 'A mind-bending journey through physics, philosophy, and first contact. Truly epic in scope.', isbn: '9780765377067', genre: 'Fiction' },
-  { id: 2, title: 'Klara and the Sun', author: 'Kazuo Ishiguro', rating: 4, format: 'Paperback', review: 'A beautiful, melancholic look at what it means to love and be human, from the perspective of an AI.', isbn: '9780571368348', genre: 'Fiction' },
-  { id: 3, title: 'Hyperion', author: 'Dan Simmons', rating: 5, format: 'Audiobook', review: 'Canterbury Tales in space. A masterpiece of world-building and character.', isbn: '9780553283686', genre: 'Fiction' },
-  { id: 4, title: 'The Creative Act', author: 'Rick Rubin', rating: 5, format: 'Hardcover', review: 'Less a how-to guide, more a spiritual text on creativity. Incredibly inspiring.', isbn: '9780593652886', genre: 'Non-Fiction' },
-  { id: 5, title: 'Sapiens', author: 'Yuval Noah Harari', rating: 5, format: 'Audiobook', review: 'A breathtaking overview of human history that reframes everything you think you know.', isbn: '9780062316097', genre: 'Non-Fiction' },
-];
-const currentlyReadingBooks = [
-    { id: 6, title: 'Project Hail Mary', author: 'Andy Weir', isbn: '9780593135204', format: 'Audiobook' },
-    { id: 7, title: 'A Swim in a Pond in the Rain', author: 'George Saunders', isbn: '9781984856029', format: 'Hardcover' },
-];
+// --- DATA IMPORT ---
+// To add, remove, or edit books, modify the 'data/books.json' file in the project root.
+// For the bookshelf, ensure each book has a title, author, and a valid 13-digit ISBN.
+import booksData from '../../../data/books.json';
 
 // --- REUSABLE & HELPER COMPONENTS ---
 const GradientBlob = ({ className }: { className: string }) => (
@@ -34,12 +26,12 @@ const Rating = ({ rating }: { rating: number }) => (
 
 const FormatBadge = ({ format }: { format: string }) => {
     const colorClasses: { [key: string]: string } = {
-        Audiobook: 'bg-purple-100 text-purple-800',
-        Hardcover: 'bg-blue-100 text-blue-800',
-        Paperback: 'bg-green-100 text-green-800',
-        eBook: 'bg-sky-100 text-sky-800',
+        audiobook: 'bg-purple-100 text-purple-800',
+        hardcover: 'bg-blue-100 text-blue-800',
+        paperback: 'bg-green-100 text-green-800',
+        ebook: 'bg-sky-100 text-sky-800',
     };
-    return <span className={`px-3 py-1 rounded-full text-sm font-medium ${colorClasses[format] || 'bg-gray-100 text-gray-800'}`}>{format}</span>;
+    return <span className={`px-3 py-1 rounded-full text-sm font-medium ${colorClasses[format.toLowerCase()] || 'bg-gray-100 text-gray-800'}`}>{format}</span>;
 };
 
 // --- PAGE-SPECIFIC COMPONENTS ---
@@ -58,10 +50,10 @@ const BookModal = ({ isOpen, setIsOpen, book }: { isOpen: boolean, setIsOpen: (i
                             <Dialog.Title as="h2" className="text-3xl font-bold mb-1 text-gray-900">{book.title}</Dialog.Title>
                             <p className="text-lg text-gray-600 mb-4">by {book.author}</p>
                             <div className="flex items-center justify-between mb-6 border-t border-b border-gray-200 py-4">
-                                <Rating rating={book.rating} />
-                                <FormatBadge format={book.format} />
+                                {book.rating && <Rating rating={book.rating} />}
+                                {book.format && <FormatBadge format={book.format} />}
                             </div>
-                            <Dialog.Description as="p" className="text-gray-700 leading-relaxed flex-grow">{book.review}</Dialog.Description>
+                            {book.review && <Dialog.Description as="p" className="text-gray-700 leading-relaxed flex-grow">{book.review}</Dialog.Description>}
                             <button onClick={() => setIsOpen(false)} className="mt-6 text-indigo-600 font-semibold hover:underline self-start">Close</button>
                         </div>
                         <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors z-10"><X /></button>
@@ -77,13 +69,10 @@ function LibrarySection() {
     const [selectedBook, setSelectedBook] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const filteredBooks = allBooks.filter(book => 
+    const filterBooks = (books: any[]) => books.filter(book => 
         book.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
         book.author.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-    const fictionBooks = filteredBooks.filter(b => b.genre === 'Fiction');
-    const nonFictionBooks = filteredBooks.filter(b => b.genre === 'Non-Fiction');
 
     const handleBookClick = (book: any) => {
         setSelectedBook(book);
@@ -91,7 +80,7 @@ function LibrarySection() {
     };
 
     const Shelf = ({ title, books }: { title: string, books: any[] }) => (
-        books.length > 0 && <div className="mb-12">
+        books.length > 0 && <div className="mb-12 last:mb-0">
             <h3 className="font-semibold text-gray-500 mb-6 text-center tracking-widest">{title}</h3>
             <div className="flex gap-8 pb-4 -mb-4 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
                 {books.map(book => (
@@ -131,8 +120,8 @@ function LibrarySection() {
                 </div>
 
                 <div className="p-4 rounded-xl bg-white/5 backdrop-blur-md shadow-md border border-white/10">
-                    <Shelf title="FICTION" books={fictionBooks} />
-                    <Shelf title="NON-FICTION" books={nonFictionBooks} />
+                    <Shelf title="FICTION" books={filterBooks(booksData.fiction)} />
+                    <Shelf title="NON-FICTION" books={filterBooks(booksData.nonFiction)} />
                 </div>
             </div>
             <BookModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} book={selectedBook} />
@@ -147,7 +136,7 @@ function CurrentlyReadingSection() {
             <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
                 <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Currently Reading</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                    {currentlyReadingBooks.map((book, i) => (
+                    {booksData.currentlyReading.map((book: any, i: number) => (
                         <motion.div 
                             key={book.id} 
                             className="flex items-center gap-8"
