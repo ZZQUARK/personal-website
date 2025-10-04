@@ -11,7 +11,6 @@ const navigation = [
   { name: 'Work', href: '/work' },
   { name: 'Writing', href: '/writing' },
   { name: 'Adventures', href: '/adventures' },
-  { name: 'Turn Up', href: '/turnupeveryday' },
 ];
 
 const SocialLinks = () => (
