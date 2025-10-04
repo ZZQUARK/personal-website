@@ -4,12 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState, useEffect, Fragment } from 'react';
 import { Dialog } from '@headlessui/react';
-import { Star, X, Search } from 'lucide-react';
+import { Star, X, Search, NotebookPen, RefreshCw } from 'lucide-react';
 
 // --- DATA IMPORT ---
 // To add, remove, or edit books, modify the 'data/books.json' file in the project root.
-// For the bookshelf, ensure each book has a title, author, and a valid 13-digit ISBN.
 import booksData from '../../../data/books.json';
+// To add, remove, or edit quotes, modify the 'data/quotes.json' file.
+import quotesData from '../../../data/quotes.json';
 
 // --- REUSABLE & HELPER COMPONENTS ---
 const GradientBlob = ({ className }: { className: string }) => (
@@ -36,6 +37,49 @@ const FormatBadge = ({ format }: { format: string }) => {
 
 // --- PAGE-SPECIFIC COMPONENTS ---
 
+const NotionButton = ({ url }: { url: string }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    return (
+        <motion.a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100/80 backdrop-blur-sm border border-gray-200/80 text-gray-700 font-semibold shadow-sm"
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
+            animate={{
+                scale: [1, 1.03, 1],
+                boxShadow: [
+                    '0 0 0px 0px rgba(99, 102, 241, 0)',
+                    '0 0 0px 4px rgba(99, 102, 241, 0.3)',
+                    '0 0 0px 0px rgba(99, 102, 241, 0)',
+                ],
+            }}
+            transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+            }}
+        >
+            <NotebookPen className="w-5 h-5 text-indigo-600" />
+            <span>Read My Notes</span>
+            <AnimatePresence>
+                {isHovered && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-800 text-white text-xs font-medium rounded-md shadow-lg whitespace-nowrap"
+                    >
+                        Read my highlights & thoughts from Notion
+                        <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-800"></div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.a>
+    );
+};
+
 const BookModal = ({ isOpen, setIsOpen, book }: { isOpen: boolean, setIsOpen: (isOpen: boolean) => void, book: any }) => (
     <AnimatePresence>
         {isOpen && (
@@ -54,7 +98,10 @@ const BookModal = ({ isOpen, setIsOpen, book }: { isOpen: boolean, setIsOpen: (i
                                 {book.format && <FormatBadge format={book.format} />}
                             </div>
                             {book.review && <Dialog.Description as="p" className="text-gray-700 leading-relaxed flex-grow">{book.review}</Dialog.Description>}
-                            <button onClick={() => setIsOpen(false)} className="mt-6 text-indigo-600 font-semibold hover:underline self-start">Close</button>
+                            <div className="mt-6 flex items-center gap-4">
+                                {book.notionUrl && <NotionButton url={book.notionUrl} />}
+                                <button onClick={() => setIsOpen(false)} className="font-semibold text-gray-600 hover:text-black">Close</button>
+                            </div>
                         </div>
                         <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors z-10"><X /></button>
                     </Dialog.Panel>
@@ -65,6 +112,7 @@ const BookModal = ({ isOpen, setIsOpen, book }: { isOpen: boolean, setIsOpen: (i
 );
 
 function LibrarySection() {
+    // ... (This component remains the same as the previous version)
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedBook, setSelectedBook] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -105,7 +153,6 @@ function LibrarySection() {
             <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
                 <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Library Bookshelf</h2>
                 <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">A selection of books I've enjoyed. Click on a cover to see my review.</p>
-                
                 <div className="max-w-md mx-auto mb-12">
                     <div className="relative">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -118,7 +165,6 @@ function LibrarySection() {
                         />
                     </div>
                 </div>
-
                 <div className="p-4 rounded-xl bg-white/5 backdrop-blur-md shadow-md border border-white/10">
                     <Shelf title="FICTION" books={filterBooks(booksData.fiction)} />
                     <Shelf title="NON-FICTION" books={filterBooks(booksData.nonFiction)} />
@@ -130,6 +176,7 @@ function LibrarySection() {
 }
 
 function CurrentlyReadingSection() {
+    // ... (This component remains the same as the previous version)
     return (
         <section className="relative py-20 lg:py-24 bg-white overflow-hidden">
             <GradientBlob className="bottom-0 right-0 w-[40rem] h-[40rem] bg-purple-200/50" />
@@ -163,6 +210,7 @@ function CurrentlyReadingSection() {
 }
 
 function CurrentlyWritingSection() {
+    // ... (This component remains the same as the previous version)
     const stages = ["First Draft", "Editing", "Beta Reading", "Final", "Published"];
     const currentStage = "Editing";
     const currentStageIndex = stages.indexOf(currentStage);
@@ -196,7 +244,56 @@ function CurrentlyWritingSection() {
     );
 }
 
+function QuoteSection() {
+    const [quote, setQuote] = useState(quotesData.quotes[0]);
+    const [isRefreshing, setIsRefreshing] = useState(false);
+
+    const getNewQuote = () => {
+        setIsRefreshing(true);
+        let newQuote = quote;
+        while (newQuote.quote === quote.quote) {
+            newQuote = quotesData.quotes[Math.floor(Math.random() * quotesData.quotes.length)];
+        }
+        setTimeout(() => setQuote(newQuote), 300); // allow exit animation to play
+        setTimeout(() => setIsRefreshing(false), 600);
+    };
+
+    useEffect(() => {
+        getNewQuote(); // Initial random quote
+    }, []);
+
+    return (
+        <section className="relative py-20 lg:py-24 bg-white overflow-hidden">
+            <GradientBlob className="top-1/2 right-[-30rem] -translate-y-1/2 w-[60rem] h-[60rem] bg-pink-300/50" />
+            <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Quote of the Day</h2>
+                <div className="max-w-3xl mx-auto p-8 bg-white/30 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={quote.quote}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className="text-center"
+                        >
+                            <p className="text-2xl lg:text-3xl font-serif text-gray-800 leading-relaxed">“{quote.quote}”</p>
+                            <p className="mt-6 text-lg font-medium text-gray-600">— {quote.source}</p>
+                        </motion.div>
+                    </AnimatePresence>
+                    <div className="absolute top-6 right-6">
+                        <motion.button onClick={getNewQuote} whileTap={{ scale: 0.9, rotate: 180 }} disabled={isRefreshing}>
+                            <RefreshCw className={`text-gray-500 hover:text-indigo-600 transition-colors ${isRefreshing ? 'animate-spin' : ''}`} />
+                        </motion.button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 const BeehiivEmbedScript = () => {
+    // ... (This component remains the same)
     useEffect(() => {
         const script = document.createElement('script');
         script.src = 'https://subscribe-forms.beehiiv.com/embed.js';
@@ -211,6 +308,7 @@ const BeehiivEmbedScript = () => {
 };
 
 function NewsletterSection() {
+    // ... (This component remains the same)
   return (
     <motion.section 
       className="py-16"
@@ -224,7 +322,6 @@ function NewsletterSection() {
         Inkpot is a newsletter for writers who wrestle with stories — essays, reflections, 
         and journeys into the art of fiction writing.
       </p>
-      
       <div className="max-w-3xl mx-auto px-4">
         <div className="rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl border border-white/20 p-6">
           <iframe
@@ -248,6 +345,7 @@ export default function WritingPage() {
       <LibrarySection />
       <CurrentlyReadingSection />
       <CurrentlyWritingSection />
+      <QuoteSection />
       <NewsletterSection />
     </main>
   );

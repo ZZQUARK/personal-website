@@ -6,7 +6,8 @@
       "author": "Cixin Liu",
       "isbn": "9780765382030",
       "review": "A masterclass in hard sci-fi that stretches the imagination.",
-      "rating": 5
+      "rating": 5,
+      "notionUrl": "https://harmonious-cotton-906.notion.site/The-Three-Body-Problem-28242105633b805eb1ffc3805909185e?source=copy_link"
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "author": "Kazuo Ishiguro",
       "isbn": "9780593318171",
       "review": "A haunting meditation on consciousness and love.",
-      "rating": 4
+      "rating": 4,
+      "notionUrl": "https://harmonious-cotton-906.notion.site/Klara-and-The-Sun-28242105633b80cab651ebd14611dd2e?source=copy_link"
     }
   ],
   "nonFiction": [
@@ -24,7 +26,8 @@
       "author": "Rick Rubin",
       "isbn": "9780593652886",
       "review": "A meditative guide to creativity as a way of life.",
-      "rating": 5
+      "rating": 5,
+      "notionUrl": "https://harmonious-cotton-906.notion.site/The-Creative-Act-A-Way-of-Being-28242105633b80abbd8be4a1f0f4cf8a?source=copy_link"
     }
   ],
   "currentlyReading": [
