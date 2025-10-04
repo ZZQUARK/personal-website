@@ -23,7 +23,7 @@ function TurnUpTeaserSection() {
   const daysSinceStart = Math.max(0, Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)));
   const streakPercentage = (daysSinceStart / 365) * 100;
 
-  const Stat = ({ title, value, icon, subline, colorClass }: { title: string, value: number, icon: string, subline: string, colorClass: string }) => (
+  const Stat = ({ title, value, icon, subline, colorClass }: { title: string, value: number, icon: string, subline: React.ReactNode, colorClass: string }) => (
     <motion.div 
       className="flex flex-col items-center justify-center space-y-1"
       whileHover={{ y: -4 }}
