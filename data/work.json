@@ -1,47 +1,82 @@
 {
   "hero": {
     "headline": "I BUILD LIKE I GIVE A DAMN.",
-    "subhead": "From messy MVPs to scaled systems, I bring clarity, creativity, and care to product management."
+    "subhead": "The bridge between messy MVPs and scaled systems.",
+    "dna": ["Product Strategy", "UX Architecture", "Full-Stack Dev"]
   },
   "activeProject": {
     "title": "Right Click Save (RCS 2.0)",
     "role": "Product Manager",
     "status": "Shipping Feb 2026",
-    "description": "Leading the rebuild of the world's premier digital art publication. Bridging editorial vision with blockchain execution."
+    "bullets": [
+      "Leading the rebuild of the world's premier digital art publication.",
+      "Bridging editorial vision with blockchain execution (Wallet Auth, Token Gating).",
+      "Mapped 100% of design-to-dev user stories to unblock MVP launch."
+    ],
+    "stack": ["Web3", "Next.js", "Linear", "Strategy"]
   },
   "ventures": [
     {
       "title": "WriteClique",
       "tagline": "AI Partner for Fiction Authors",
       "status": "Beta",
-      "description": "An AI writing partner moving authors from 'Messy Draft' to 'Flawless Fiction'."
+      "bullets": [
+        "Moving authors from 'Messy Draft' to 'Flawless Fiction' using custom LLM pipelines.",
+        "Architected the 'Prompt Chain' logic for plot consistency."
+      ],
+      "stack": ["OpenAI API", "Python", "React", "Prompt Eng"]
     }
   ],
   "selectedWorks": [
     {
       "company": "RentEzee",
       "tagline": "Co-Founder to Exit",
-      "description": "Built a P2P marketplace, raised angel rounds, scaled to $100k+ MRR, and executed a successful acquisition."
+      "bullets": [
+        "Built P2P marketplace from 0 to Acquisition.",
+        "Scaled to $100k+ MRR and 17,000+ listings.",
+        "Managed 40+ daily orders and physical logistics."
+      ],
+      "stack": ["Marketplace Ops", "Growth", "Mobile Apps"]
     },
     {
       "company": "Yara",
       "tagline": "Global Ag-Tech Scale",
-      "description": "Owned mobile apps for a global agri-giant. Launched in SE Asia & Africa, managing deployment for millions of farmers."
+      "bullets": [
+        "Owned FarmCare/FarmGo apps for global agri-giant.",
+        "Launched in SE Asia & Africa, serving millions of farmers.",
+        "Led daily deployment decisions for scalable implementation."
+      ],
+      "stack": ["Enterprise Scale", "Mobile", "Analytics"]
     },
     {
       "company": "Zeta",
       "tagline": "Fintech at 1M TPS",
-      "description": "Built the neo-banking stack for India’s largest private bank. Architected for extreme scale and RBI compliance."
+      "bullets": [
+        "Built neo-banking stack for India's largest private bank.",
+        "Architected system for 1 Million Transactions/Sec.",
+        "Ensured 100% RBI compliance for KYC and Payments."
+      ],
+      "stack": ["Fintech", "Security", "High-Scale Arch"]
     },
     {
       "company": "FeFoSys",
       "tagline": "SaaS for Emerging Markets",
-      "description": "Architected a POS & Inventory system for African SMBs. Scaled to 1,000+ stores with offline-first capabilities."
+      "bullets": [
+        "Architected POS & Inventory system for African SMBs.",
+        "Scaled to 1,000+ stores with offline-first sync.",
+        "Integrated Bluetooth printers and local payment gateways."
+      ],
+      "stack": ["SaaS", "Offline-First", "React"]
     },
     {
       "company": "Reunion",
       "tagline": "Gen Z AI Consumer App",
-      "description": "Designed GPT-4 prompt logic for a journaling app. Balanced mental health nuances with retention loops."
+      "bullets": [
+        "Designed GPT-4 prompt logic for journaling.",
+        "Balanced mental health nuances with retention loops.",
+        "Created viral loops using data-driven psychology."
+      ],
+      "stack": ["GenAI", "Consumer", "Psychology"]
     }
   ],
   "cta": {

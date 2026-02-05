@@ -1,7 +1,7 @@
 import React from 'react';
 import workData from '../../../data/work.json';
 import Link from 'next/link';
-import { ArrowUpRight, Sparkles, Hammer, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Hammer } from 'lucide-react';
 
 export const metadata = {
   title: 'Work | Akshit Kumar',
@@ -11,18 +11,52 @@ export const metadata = {
 export default function WorkPage() {
   const { hero, activeProject, ventures, selectedWorks, cta } = workData;
 
+  // Reusable component for the bullet list
+  const BulletList = ({ items }: { items: string[] }) => (
+    <ul className="space-y-3">
+      {items.map((item, idx) => (
+        <li key={idx} className="relative pl-5 text-neutral-600 text-sm leading-relaxed">
+          <span className="absolute left-0 top-2 w-1.5 h-1.5 bg-neutral-300 rounded-sm"></span>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+
+  // Reusable component for the tech stack
+  const TechStack = ({ items }: { items: string[] }) => (
+    <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-neutral-100/50">
+      {items.map((tech, idx) => (
+        <span key={idx} className="px-2 py-1 bg-neutral-50 text-neutral-500 text-[10px] font-mono font-semibold uppercase tracking-wider rounded border border-neutral-100">
+          {tech}
+        </span>
+      ))}
+    </div>
+  );
+
   return (
     <main className="min-h-screen bg-white text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white">
       <div className="max-w-3xl mx-auto px-6 py-24 lg:py-32 space-y-24">
         
         {/* 1. Hero Section */}
         <section className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <h1 className="text-5xl sm:text-7xl font-serif font-bold tracking-tighter text-neutral-900 leading-[0.9]">
-            {hero.headline}
-          </h1>
-          <p className="text-xl sm:text-2xl text-neutral-500 leading-relaxed max-w-2xl font-light">
-            {hero.subhead}
-          </p>
+          <div className="space-y-4">
+            <h1 className="text-5xl sm:text-7xl font-serif font-bold tracking-tighter text-neutral-900 leading-[0.9]">
+              {hero.headline}
+            </h1>
+            <p className="text-xl sm:text-2xl text-neutral-500 leading-relaxed max-w-2xl font-light tracking-tight">
+              {hero.subhead}
+            </p>
+          </div>
+          
+          {/* DNA Pills */}
+          <div className="flex flex-wrap gap-3">
+            {hero.dna.map((item, index) => (
+              <span key={index} className="inline-flex items-center px-3 py-1.5 rounded-md bg-neutral-100 text-neutral-600 text-xs font-mono font-medium">
+                {item}
+              </span>
+            ))}
+          </div>
         </section>
 
         {/* 2. Active Project - High Prominence Card */}
@@ -44,11 +78,11 @@ export default function WorkPage() {
                 <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight group-hover:text-black transition-colors">
                   {activeProject.title}
                 </h2>
-                <p className="text-lg text-neutral-500 font-medium mt-2">{activeProject.role}</p>
+                <p className="text-lg text-neutral-500 font-medium mt-1 font-mono text-sm uppercase tracking-wide">{activeProject.role}</p>
               </div>
-              <p className="text-lg text-neutral-700 leading-relaxed max-w-xl">
-                {activeProject.description}
-              </p>
+              
+              <BulletList items={activeProject.bullets} />
+              <TechStack items={activeProject.stack} />
             </div>
           </div>
         </section>
@@ -62,13 +96,15 @@ export default function WorkPage() {
           {ventures.map((venture, index) => (
             <div key={index} className="border-2 border-dashed border-neutral-300 rounded-2xl p-8 sm:p-10 hover:border-neutral-400 hover:bg-neutral-50/50 transition-all duration-300">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                <h3 className="text-2xl font-bold text-neutral-900">{venture.title}</h3>
+                <h3 className="text-2xl font-bold text-neutral-900 tracking-tight">{venture.title}</h3>
                 <span className="self-start sm:self-auto px-3 py-1 bg-neutral-100 text-neutral-600 text-xs font-bold rounded-full uppercase tracking-wider">
                   {venture.status}
                 </span>
               </div>
-              <p className="text-neutral-500 font-medium italic mb-4 text-lg">{venture.tagline}</p>
-              <p className="text-neutral-700 leading-relaxed">{venture.description}</p>
+              <p className="text-neutral-500 font-medium italic mb-6 text-base">{venture.tagline}</p>
+              
+              <BulletList items={venture.bullets} />
+              <TechStack items={venture.stack} />
             </div>
           ))}
         </section>
@@ -82,13 +118,16 @@ export default function WorkPage() {
                 key={index} 
                 className="group bg-white border border-neutral-200 rounded-xl p-6 hover:shadow-lg hover:border-neutral-300 hover:-translate-y-1 transition-all duration-300 ease-out h-full flex flex-col"
               >
-                <div className="mb-3">
-                  <h4 className="text-lg font-bold text-neutral-900 group-hover:text-black">{work.company}</h4>
-                  <p className="text-sm text-neutral-400 italic font-medium mt-0.5">{work.tagline}</p>
+                <div className="mb-4">
+                  <h4 className="text-lg font-bold text-neutral-900 group-hover:text-black tracking-tight">{work.company}</h4>
+                  <p className="text-xs text-neutral-400 italic font-medium mt-1">{work.tagline}</p>
                 </div>
-                <p className="text-neutral-600 text-sm leading-relaxed">
-                  {work.description}
-                </p>
+                
+                <div className="flex-grow">
+                  <BulletList items={work.bullets} />
+                </div>
+                
+                <TechStack items={work.stack} />
               </div>
             ))}
           </div>
