@@ -76,17 +76,17 @@ export default function WorkPage() {
         {/* 4. Selected Works - Grid of Cards */}
         <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
           <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-8">Selected Works</h3>
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {selectedWorks.map((work, index) => (
               <div 
                 key={index} 
-                className="group bg-white border border-neutral-200 rounded-xl p-6 sm:p-8 hover:shadow-lg hover:border-neutral-300 hover:-translate-y-1 transition-all duration-300 ease-out"
+                className="group bg-white border border-neutral-200 rounded-xl p-6 hover:shadow-lg hover:border-neutral-300 hover:-translate-y-1 transition-all duration-300 ease-out h-full flex flex-col"
               >
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
-                  <h4 className="text-xl font-bold text-neutral-900 group-hover:text-black">{work.company}</h4>
-                  <span className="text-sm text-neutral-400 italic font-medium">{work.tagline}</span>
+                <div className="mb-3">
+                  <h4 className="text-lg font-bold text-neutral-900 group-hover:text-black">{work.company}</h4>
+                  <p className="text-sm text-neutral-400 italic font-medium mt-0.5">{work.tagline}</p>
                 </div>
-                <p className="text-neutral-600 leading-relaxed">
+                <p className="text-neutral-600 text-sm leading-relaxed">
                   {work.description}
                 </p>
               </div>
