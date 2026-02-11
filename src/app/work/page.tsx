@@ -152,9 +152,6 @@ export default function WorkPage() {
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
           </div>
-          <p className="text-center text-xs font-medium text-neutral-400 mt-6 tracking-wide">
-            {cta.cryptoLabel}
-          </p>
         </section>
 
       </div>
