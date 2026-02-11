@@ -80,8 +80,7 @@
     }
   ],
   "cta": {
-    "freeCallUrl": "https://calendly.com",
-    "paidCallUrl": "https://gumroad.com",
-    "cryptoLabel": "Pay with SOL"
+    "freeCallUrl": "https://calendly.com/akshit-zigzagquark/strategy-audit",
+    "paidCallUrl": "https://zigzagakshit.gumroad.com/l/product-audit"
   }
 }
