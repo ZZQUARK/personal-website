@@ -11,7 +11,7 @@
   "activeProject": {
     "title": "Right Click Save (RCS 2.0)",
     "role": "Founding Product Manager",
-    "status": "Shipping Feb 2026",
+    "status": "",
     "bullets": [
       "Leading 0→1 rebuild of the platform layer for a global digital art publication.",
       "Translating editorial + Web3 vision into scoped MVPs with real shipping cadence.",
@@ -24,7 +24,7 @@
     {
       "title": "WriteClique",
       "tagline": "AI Partner for Fiction Authors",
-      "status": "Beta",
+      "badges": ["Personal Project", "Private Beta"],
       "bullets": [
         "Built LLM-powered editing pipelines to move manuscripts from draft to structural clarity.",
         "Architected prompt-chain logic for plot consistency and character continuity.",

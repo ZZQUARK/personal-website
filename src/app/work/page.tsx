@@ -21,16 +21,30 @@ export default function WorkPage() {
     </ul>
   );
 
-  // Reusable component for the tech stack
-  const TechStack = ({ items }: { items: string[] }) => (
-    <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-neutral-100/50">
-      {items.map((tech, idx) => (
-        <span key={idx} className="px-2 py-1 bg-neutral-100 text-neutral-500 text-[10px] font-mono font-medium uppercase tracking-wider rounded border border-neutral-200">
-          {tech}
-        </span>
-      ))}
-    </div>
-  );
+  // Reusable component for the tech stack with subtle colors
+  const TechStack = ({ items }: { items: string[] }) => {
+    const colorClasses = [
+      "bg-blue-50 text-blue-700 border-blue-100",
+      "bg-purple-50 text-purple-700 border-purple-100",
+      "bg-emerald-50 text-emerald-700 border-emerald-100",
+      "bg-amber-50 text-amber-700 border-amber-100",
+      "bg-pink-50 text-pink-700 border-pink-100",
+      "bg-indigo-50 text-indigo-700 border-indigo-100",
+    ];
+
+    return (
+      <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-neutral-100/50">
+        {items.map((tech, idx) => {
+          const colorClass = colorClasses[idx % colorClasses.length];
+          return (
+            <span key={idx} className={`px-2 py-1 text-[10px] font-mono font-semibold uppercase tracking-wider rounded border ${colorClass}`}>
+              {tech}
+            </span>
+          );
+        })}
+      </div>
+    );
+  };
 
   // Animation variants
   const containerVariants = {
@@ -120,15 +134,17 @@ export default function WorkPage() {
              Current Focus
           </h3>
           <div className="bg-white/80 backdrop-blur-sm border border-neutral-200/60 rounded-2xl p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-6 sm:p-8">
-               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-green-50 text-green-700/80 uppercase tracking-wide border border-green-100">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            {activeProject.status && (
+              <div className="absolute top-0 right-0 p-6 sm:p-8">
+                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-green-50 text-green-700/80 uppercase tracking-wide border border-green-100">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  {activeProject.status}
                 </span>
-                {activeProject.status}
-              </span>
-            </div>
+              </div>
+            )}
 
             <div className="relative z-10 space-y-6 mt-2">
               <div>
@@ -159,9 +175,13 @@ export default function WorkPage() {
             <div key={index} className="border border-dashed border-neutral-300 rounded-2xl p-8 sm:p-10 hover:border-neutral-400 hover:bg-neutral-50/30 transition-all duration-300">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                 <h3 className="text-2xl font-bold text-neutral-900 tracking-tight font-serif">{venture.title}</h3>
-                <span className="self-start sm:self-auto px-3 py-1 bg-neutral-100 text-neutral-600 text-xs font-bold rounded-full uppercase tracking-wider font-sans">
-                  {venture.status}
-                </span>
+                <div className="flex gap-2 flex-wrap">
+                  {venture.badges && venture.badges.map((badge: string, bIdx: number) => (
+                    <span key={bIdx} className="px-3 py-1 bg-neutral-100 text-neutral-600 text-xs font-bold rounded-full uppercase tracking-wider font-sans whitespace-nowrap">
+                      {badge}
+                    </span>
+                  ))}
+                </div>
               </div>
               <p className="text-neutral-500 font-medium italic mb-6 text-base font-serif">{venture.tagline}</p>
               
@@ -234,12 +254,20 @@ export default function WorkPage() {
             {cta.text}
           </h2>
           
-          <div className="flex flex-col sm:flex-row gap-6 max-w-lg mx-auto w-full items-start">
-            <div className="flex-[2] flex flex-col gap-3 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto w-full">
+            <Link 
+              href={cta.freeCallUrl}
+              target="_blank"
+              className="order-2 sm:order-1 flex items-center justify-center gap-2 px-6 py-5 rounded-lg border border-neutral-200 text-neutral-600 font-bold hover:bg-neutral-50 hover:text-neutral-900 hover:border-neutral-300 transition-all duration-200 w-full whitespace-nowrap h-[68px]"
+            >
+              Intro Chat
+            </Link>
+            
+            <div className="flex flex-col gap-3 w-full order-1 sm:order-2">
                <Link 
                 href={cta.paidCallUrl}
                 target="_blank"
-                className="flex items-center justify-center gap-2 px-8 py-5 rounded-lg bg-neutral-900 text-white font-bold text-lg hover:bg-black hover:shadow-xl transition-all duration-200 group w-full"
+                className="flex items-center justify-center gap-2 px-6 py-5 rounded-lg bg-neutral-900 text-white font-bold text-lg hover:bg-black hover:shadow-xl transition-all duration-200 group w-full whitespace-nowrap h-[68px]"
               >
                 Strategy Audit ($100)
                 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -248,14 +276,6 @@ export default function WorkPage() {
                 {cta.primarySubtext}
               </p>
             </div>
-            
-            <Link 
-              href={cta.freeCallUrl}
-              target="_blank"
-              className="flex-1 flex items-center justify-center gap-2 px-8 py-5 rounded-lg border border-neutral-200 text-neutral-600 font-bold hover:bg-neutral-50 hover:text-neutral-900 hover:border-neutral-300 transition-all duration-200 w-full sm:w-auto h-[68px]"
-            >
-              Intro Chat
-            </Link>
           </div>
         </motion.section>
 
