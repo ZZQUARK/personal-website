@@ -1,7 +1,7 @@
 import React from 'react';
 import workData from '../../../data/work.json';
 import Link from 'next/link';
-import { ArrowUpRight, Sparkles, Hammer } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Hammer, Zap, Layers } from 'lucide-react';
 
 export const metadata = {
   title: 'Work | Akshit Kumar',
@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default function WorkPage() {
-  const { hero, activeProject, ventures, selectedWorks, cta } = workData;
+  const { hero, whatIDo, activeProject, ventures, selectedWorks, howIOperate, cta } = workData;
 
   // Reusable component for the bullet list
   const BulletList = ({ items }: { items: string[] }) => (
@@ -59,7 +59,18 @@ export default function WorkPage() {
           </div>
         </section>
 
-        {/* 2. Active Project - High Prominence Card */}
+        {/* 2. WHAT I DO Section */}
+        <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+          <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+            <Layers className="w-3 h-3" />
+            {whatIDo.label}
+          </h3>
+          <p className="text-lg text-neutral-800 leading-relaxed whitespace-pre-line font-medium border-l-2 border-neutral-200 pl-6">
+            {whatIDo.content}
+          </p>
+        </section>
+
+        {/* 3. Active Project - High Prominence Card */}
         <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
           <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-6 flex items-center gap-2">
              <Sparkles className="w-3 h-3" />
@@ -87,7 +98,7 @@ export default function WorkPage() {
           </div>
         </section>
 
-        {/* 3. Ventures - Builder/Beta Style */}
+        {/* 4. Ventures - Builder/Beta Style */}
         <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
           <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-6 flex items-center gap-2">
             <Hammer className="w-3 h-3" />
@@ -109,7 +120,7 @@ export default function WorkPage() {
           ))}
         </section>
 
-        {/* 4. Selected Works - Grid of Cards */}
+        {/* 5. Selected Works - Grid of Cards */}
         <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
           <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-8">Selected Works</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -133,23 +144,49 @@ export default function WorkPage() {
           </div>
         </section>
 
-        {/* 5. Footer / CTA - High Contrast */}
-        <section className="pt-12 mt-12 border-t border-neutral-100 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-500">
-          <div className="flex flex-col sm:flex-row gap-4">
+        {/* 6. HOW I OPERATE Section */}
+        <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+          <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-8 flex items-center gap-2">
+            <Zap className="w-3 h-3" />
+            {howIOperate.label}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             {howIOperate.items.map((item, idx) => (
+               <div key={idx} className="flex items-start gap-3 p-4 border border-neutral-100 rounded-lg bg-neutral-50/50">
+                  <div className="mt-1.5 w-1.5 h-1.5 bg-neutral-400 rounded-full flex-shrink-0" />
+                  <span className="text-neutral-700 font-medium text-sm leading-relaxed">{item}</span>
+               </div>
+             ))}
+          </div>
+        </section>
+
+        {/* 7. Footer / CTA - High Contrast */}
+        <section className="pt-12 mt-12 border-t border-neutral-100 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-500 space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-neutral-900 text-center max-w-2xl mx-auto leading-tight">
+            {cta.text}
+          </h2>
+          
+          <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto w-full">
+            <div className="flex-[2] flex flex-col gap-2">
+               <Link 
+                href={cta.paidCallUrl}
+                target="_blank"
+                className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-neutral-900 text-white font-bold hover:bg-black hover:shadow-xl transition-all duration-200 group w-full"
+              >
+                Strategy Audit ($100)
+                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
+              <p className="text-center text-[10px] uppercase tracking-wider font-semibold text-neutral-400">
+                {cta.primarySubtext}
+              </p>
+            </div>
+            
             <Link 
               href={cta.freeCallUrl}
               target="_blank"
-              className="flex-1 flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-neutral-200 text-neutral-900 font-bold hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-200"
+              className="flex-1 flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-neutral-200 text-neutral-900 font-bold hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-200 h-[56px]"
             >
               Intro Chat (Free)
-            </Link>
-            <Link 
-              href={cta.paidCallUrl}
-              target="_blank"
-              className="flex-[2] flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-neutral-900 text-white font-bold hover:bg-black hover:shadow-xl transition-all duration-200 group"
-            >
-              Strategy Audit ($100)
-              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
           </div>
         </section>

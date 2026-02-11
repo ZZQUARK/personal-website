@@ -1,19 +1,24 @@
 {
   "hero": {
     "headline": "I BUILD LIKE I GIVE A DAMN.",
-    "subhead": "The bridge between messy MVPs and scaled systems.",
-    "dna": ["Product Strategy", "UX Architecture", "Full-Stack Dev"]
+    "subhead": "From messy MVPs to scaled systems — I turn ambiguity into shipped product.",
+    "dna": ["Product Strategy", "UX Architecture", "Full-Stack Execution", "AI Systems", "Founder Mode"]
+  },
+  "whatIDo": {
+    "label": "WHAT I DO",
+    "content": "I step in when things are unclear, stalled, or fragile — and leave behind structure, velocity, and shipped outcomes.\nDiscovery → Scope → System → Launch."
   },
   "activeProject": {
     "title": "Right Click Save (RCS 2.0)",
-    "role": "Product Manager",
+    "role": "Founding Product Manager",
     "status": "Shipping Feb 2026",
     "bullets": [
-      "Leading the rebuild of the world's premier digital art publication.",
-      "Bridging editorial vision with blockchain execution (Wallet Auth, Token Gating).",
-      "Mapped 100% of design-to-dev user stories to unblock MVP launch."
+      "Leading 0→1 rebuild of the platform layer for a global digital art publication.",
+      "Translating editorial + Web3 vision into scoped MVPs with real shipping cadence.",
+      "Designing community mechanics (reputation, access control, contribution flows).",
+      "Establishing async-first product ops across a global remote team."
     ],
-    "stack": ["Web3", "Next.js", "Linear", "Strategy"]
+    "stack": ["WEB3", "COMMUNITY SYSTEMS", "MVP ARCHITECTURE", "PRODUCT OPS"]
   },
   "ventures": [
     {
@@ -21,10 +26,11 @@
       "tagline": "AI Partner for Fiction Authors",
       "status": "Beta",
       "bullets": [
-        "Moving authors from 'Messy Draft' to 'Flawless Fiction' using custom LLM pipelines.",
-        "Architected the 'Prompt Chain' logic for plot consistency."
+        "Built LLM-powered editing pipelines to move manuscripts from draft to structural clarity.",
+        "Architected prompt-chain logic for plot consistency and character continuity.",
+        "Designed feedback loops that feel like editor-quality critique, not chatbot output."
       ],
-      "stack": ["OpenAI API", "Python", "React", "Prompt Eng"]
+      "stack": ["LLM PIPELINES", "PROMPT ENGINEERING", "REACT", "PYTHON"]
     }
   ],
   "selectedWorks": [
@@ -32,9 +38,9 @@
       "company": "RentEzee",
       "tagline": "Co-Founder to Exit",
       "bullets": [
-        "Built P2P marketplace from 0 to Acquisition.",
-        "Scaled to $100k+ MRR and 17,000+ listings.",
-        "Managed 40+ daily orders and physical logistics."
+        "Built marketplace from 0 to acquisition.",
+        "Scaled to 17,000+ listings and 40+ daily physical deliveries.",
+        "Drove $100k+ MRR pre-exit."
       ],
       "stack": ["Marketplace Ops", "Growth", "Mobile Apps"]
     },
@@ -42,9 +48,9 @@
       "company": "Yara",
       "tagline": "Global Ag-Tech Scale",
       "bullets": [
-        "Owned FarmCare/FarmGo apps for global agri-giant.",
-        "Launched in SE Asia & Africa, serving millions of farmers.",
-        "Led daily deployment decisions for scalable implementation."
+        "Owned two mobile apps across 3 continents.",
+        "Launched region expansions for millions of farmers.",
+        "Led daily shipping decisions under enterprise constraints."
       ],
       "stack": ["Enterprise Scale", "Mobile", "Analytics"]
     },
@@ -52,9 +58,9 @@
       "company": "Zeta",
       "tagline": "Fintech at 1M TPS",
       "bullets": [
-        "Built neo-banking stack for India's largest private bank.",
-        "Architected system for 1 Million Transactions/Sec.",
-        "Ensured 100% RBI compliance for KYC and Payments."
+        "Launched prepaid card product for India’s largest private bank.",
+        "Architected scalable KYC and compliance modules.",
+        "Designed system capable of supporting 1M+ concurrent transactions."
       ],
       "stack": ["Fintech", "Security", "High-Scale Arch"]
     },
@@ -62,9 +68,9 @@
       "company": "FeFoSys",
       "tagline": "SaaS for Emerging Markets",
       "bullets": [
-        "Architected POS & Inventory system for African SMBs.",
+        "Architected POS + inventory SaaS for emerging markets.",
         "Scaled to 1,000+ stores with offline-first sync.",
-        "Integrated Bluetooth printers and local payment gateways."
+        "Integrated subscription billing and AI support flows."
       ],
       "stack": ["SaaS", "Offline-First", "React"]
     },
@@ -72,14 +78,25 @@
       "company": "Reunion",
       "tagline": "Gen Z AI Consumer App",
       "bullets": [
-        "Designed GPT-4 prompt logic for journaling.",
-        "Balanced mental health nuances with retention loops.",
-        "Created viral loops using data-driven psychology."
+        "Designed GPT-powered journaling assistant for Gen Z users.",
+        "Built AI recap engine and tone-aware reflection system.",
+        "Defined freemium monetization model."
       ],
       "stack": ["GenAI", "Consumer", "Psychology"]
     }
   ],
+  "howIOperate": {
+    "label": "HOW I OPERATE",
+    "items": [
+      "I ship fast, then stabilize.",
+      "I document decisions.",
+      "I design systems, not features.",
+      "I protect velocity without sacrificing clarity."
+    ]
+  },
   "cta": {
+    "text": "If you're looking for someone to take ownership and move the needle — not just manage tickets — let’s talk.",
+    "primarySubtext": "For founders serious about shipping.",
     "freeCallUrl": "https://calendly.com/akshit-zigzagquark/strategy-audit",
     "paidCallUrl": "https://zigzagakshit.gumroad.com/l/product-audit"
   }
