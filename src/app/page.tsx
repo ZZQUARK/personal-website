@@ -35,26 +35,26 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-neutral-50 text-neutral-900 font-sans selection:bg-yellow-400 selection:text-black">
-      <div className="max-w-[680px] mx-auto px-6 py-24 sm:py-32 flex flex-col items-center text-center">
+      <div className="max-w-[680px] mx-auto px-6 py-24 sm:py-32 flex flex-col items-start text-left">
         
         <motion.div 
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="w-full flex flex-col items-center gap-16"
+          className="w-full flex flex-col items-start gap-12"
         >
           {/* HERO */}
-          <motion.div variants={itemVariants} className="flex flex-col items-center gap-6">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden shadow-sm">
+          <motion.div variants={itemVariants} className="w-full flex flex-col items-start gap-8">
+            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-sm">
               <Image 
-                src="/Circle of life.jpg" 
+                src="/Hero Image.JPG" 
                 alt="Akshit and James"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-neutral-900">
                 Hi, I'm Akshit.
               </h1>
@@ -72,37 +72,34 @@ export default function Home() {
           </motion.div>
 
           {/* NAVIGATION */}
-          <motion.nav variants={itemVariants} className="flex flex-col gap-6 text-xl sm:text-2xl font-serif">
-            <Link href="/work" className="hover:underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-all duration-300">
-              Explore my Product Work ↗
+          <motion.nav variants={itemVariants} className="flex flex-col gap-4 text-xl sm:text-2xl font-serif items-start w-full">
+            <Link href="/work" className="hover:underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-all duration-300 flex items-center gap-2 group">
+              Explore my Product Work <span className="text-neutral-400 group-hover:text-neutral-900 transition-colors">↗</span>
             </Link>
-            <Link href="/writing" className="hover:underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-all duration-300">
-              Read my Thriller & Essays ↗
+            <Link href="/writing" className="hover:underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-all duration-300 flex items-center gap-2 group">
+              Read my Thriller & Essays <span className="text-neutral-400 group-hover:text-neutral-900 transition-colors">↗</span>
             </Link>
-            <Link href="/adventures" className="hover:underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-all duration-300">
-              View my Adventures ↗
+            <Link href="/adventures" className="hover:underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-all duration-300 flex items-center gap-2 group">
+              View my Adventures <span className="text-neutral-400 group-hover:text-neutral-900 transition-colors">↗</span>
             </Link>
           </motion.nav>
 
-          {/* NEWSLETTER */}
-          <motion.div variants={itemVariants} className="w-full max-w-md pt-12 border-t border-neutral-200">
-            <h3 className="text-lg font-serif font-bold mb-2">Thoughts in Knots</h3>
-            <p className="text-neutral-600 mb-6">
+          {/* NEWSLETTER (Beehiiv Embed) */}
+          <motion.div variants={itemVariants} className="w-full pt-12 border-t border-neutral-200">
+            <h3 className="text-lg font-serif font-bold mb-4">Thoughts in Knots</h3>
+            <p className="text-neutral-600 mb-6 text-lg font-light">
               A weekly letter on entropy, fiction, and suffering.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                className="flex-1 bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900 transition-colors placeholder:text-neutral-400"
-              />
-              <button 
-                type="submit"
-                className="px-6 py-2 bg-neutral-900 text-white font-medium text-sm hover:bg-black transition-colors rounded-sm"
-              >
-                Subscribe
-              </button>
-            </form>
+            <div className="w-full overflow-hidden">
+              <iframe 
+                src="https://subscribe-forms.beehiiv.com/8b824b9a-ba5f-426e-a4a2-f68b7d1af86c" 
+                data-test-id="beehiiv-embed" 
+                height="339" 
+                frameBorder="0" 
+                scrolling="no" 
+                style={{ width: '100%', borderRadius: '0px', backgroundColor: 'transparent', margin: '0' }}
+              ></iframe>
+            </div>
           </motion.div>
 
         </motion.div>

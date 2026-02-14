@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Akshit Kumar - Product Builder, Thriller Novelist & Adventurer',
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Script src="https://subscribe-forms.beehiiv.com/attribution.js" strategy="afterInteractive" />
       </body>
     </html>
   )
