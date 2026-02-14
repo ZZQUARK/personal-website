@@ -37,7 +37,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-        <Script src="https://subscribe-forms.beehiiv.com/attribution.js" strategy="afterInteractive" />
+        <Script src="https://subscribe-forms.beehiiv.com/attribution.js" strategy="afterInteractive" async />
       </body>
     </html>
   )

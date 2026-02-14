@@ -35,33 +35,41 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-neutral-50 text-neutral-900 font-sans selection:bg-yellow-400 selection:text-black">
-      <div className="max-w-[680px] mx-auto px-6 py-24 sm:py-32 flex flex-col items-start text-left">
+      
+      {/* SECTION 1: THE IMAGE (Full Width, Cinematic) */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+        className="w-full h-[70vh] relative"
+      >
+        <Image 
+          src="/Hero Image.JPG" 
+          alt="Akshit and James"
+          fill
+          className="object-cover"
+          priority
+        />
+      </motion.div>
+
+      {/* SECTION 2: THE LETTER (Intimate, Centered) */}
+      <div className="max-w-2xl mx-auto px-6 py-20 sm:py-24 flex flex-col items-start text-left">
         
         <motion.div 
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true }}
           variants={containerVariants}
           className="w-full flex flex-col items-start gap-12"
         >
-          {/* HERO */}
-          <motion.div variants={itemVariants} className="w-full flex flex-col items-start gap-8">
-            <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-sm">
-              <Image 
-                src="/Hero Image.JPG" 
-                alt="Akshit and James"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-neutral-900">
-                Hi, I'm Akshit.
-              </h1>
-              <p className="text-xl sm:text-2xl text-neutral-600 font-light">
-                I build systems, write thrillers, and run far.
-              </p>
-            </div>
+          {/* HEADER */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <h1 className="text-6xl sm:text-7xl font-serif font-bold tracking-tight text-neutral-900 leading-[0.9]">
+              Hi, I'm Akshit.
+            </h1>
+            <p className="text-2xl sm:text-3xl text-neutral-600 font-light leading-snug">
+              I build systems, write thrillers, and run far.
+            </p>
           </motion.div>
 
           {/* THE MANIFESTO */}
@@ -72,7 +80,7 @@ export default function Home() {
           </motion.div>
 
           {/* NAVIGATION */}
-          <motion.nav variants={itemVariants} className="flex flex-col gap-4 text-xl sm:text-2xl font-serif items-start w-full">
+          <motion.nav variants={itemVariants} className="flex flex-col gap-5 text-xl sm:text-2xl font-serif items-start w-full">
             <Link href="/work" className="hover:underline underline-offset-4 decoration-neutral-300 hover:decoration-neutral-900 transition-all duration-300 flex items-center gap-2 group">
               Explore my Product Work <span className="text-neutral-400 group-hover:text-neutral-900 transition-colors">↗</span>
             </Link>
@@ -84,22 +92,18 @@ export default function Home() {
             </Link>
           </motion.nav>
 
-          {/* NEWSLETTER (Beehiiv Embed) */}
-          <motion.div variants={itemVariants} className="w-full pt-12 border-t border-neutral-200">
-            <h3 className="text-lg font-serif font-bold mb-4">Thoughts in Knots</h3>
-            <p className="text-neutral-600 mb-6 text-lg font-light">
-              A weekly letter on entropy, fiction, and suffering.
-            </p>
-            <div className="w-full overflow-hidden">
-              <iframe 
-                src="https://subscribe-forms.beehiiv.com/8b824b9a-ba5f-426e-a4a2-f68b7d1af86c" 
-                data-test-id="beehiiv-embed" 
-                height="339" 
-                frameBorder="0" 
-                scrolling="no" 
-                style={{ width: '100%', borderRadius: '0px', backgroundColor: 'transparent', margin: '0' }}
-              ></iframe>
-            </div>
+          {/* BEEHIIV INTEGRATION */}
+          <motion.div variants={itemVariants} className="w-full mt-16 pt-12 border-t border-neutral-200">
+             <h3 className="text-2xl font-serif font-bold mb-4">Thoughts in Knots</h3>
+             <p className="text-neutral-600 mb-6 text-lg">A weekly letter on entropy, fiction, and suffering.</p>
+             <iframe 
+               src="https://subscribe-forms.beehiiv.com/8b824b9a-ba5f-426e-a4a2-f68b7d1af86c" 
+               data-test-id="beehiiv-embed" 
+               height="300" 
+               frameBorder="0" 
+               scrolling="no" 
+               style={{ width: '100%', borderRadius: '0px', backgroundColor: 'transparent', margin: '0' }}
+             ></iframe>
           </motion.div>
 
         </motion.div>
