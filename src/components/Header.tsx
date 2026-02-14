@@ -49,51 +49,48 @@ export default function Header() {
       className="fixed top-0 left-0 right-0 z-50 h-24"
     >
       <div className="max-w-7xl mx-auto px-6 h-full">
-        <div className="relative flex items-center justify-between h-full bg-white/30 backdrop-blur-md rounded-xl shadow-sm border border-white/20 px-6">
-          
-          {/* Left: Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <Image src="/Logo.png" alt="Signature Logo" width={100} height={40} style={{ height: 'auto' }} />
-            </Link>
-          </div>
-
-          {/* Center: Navigation (Absolutely Centered on Desktop) */}
-          <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="flex items-baseline space-x-6">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Social Icons & Mobile Menu Button */}
-          <div className="flex items-center">
-            <div className="hidden md:block">
-              <SocialLinks />
-            </div>
-            <div className="flex md:hidden">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-indigo-600"
-                aria-controls="mobile-menu"
-                aria-expanded={mobileMenuOpen}
-              >
-                <span className="sr-only">Open main menu</span>
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </div>
+                  <div className="relative flex items-center justify-start h-full bg-white/30 backdrop-blur-md rounded-xl shadow-sm border border-white/20 px-6 gap-12">
+                    
+                    {/* Left: Logo */}
+                    <div className="flex-shrink-0">
+                      <Link href="/" className="flex items-center">
+                        <Image src="/Logo.png" alt="Signature Logo" width={100} height={40} style={{ height: 'auto' }} />
+                      </Link>
+                    </div>
+        
+                    {/* Navigation Links */}
+                    <div className="hidden md:flex items-baseline space-x-6">
+                      {navigation.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+        
+                    {/* Right: Social Icons & Mobile Menu Button - pushed to right */}
+                    <div className="flex items-center ml-auto">
+                      <div className="hidden md:block">
+                        <SocialLinks />
+                      </div>
+                      <div className="flex md:hidden">
+                        <button
+                          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                          type="button"
+                          className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-indigo-600"
+                          aria-controls="mobile-menu"
+                          aria-expanded={mobileMenuOpen}
+                        >
+                          <span className="sr-only">Open main menu</span>
+                          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                      </div>
+                    </div>
+        
+                  </div>      </div>
 
       {/* Mobile Menu Panel */}
       {mobileMenuOpen && (

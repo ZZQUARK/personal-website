@@ -41,13 +41,13 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
-        className="w-full h-[70vh] relative"
+        className="w-full h-[85vh] relative"
       >
         <Image 
           src="/Hero Image.JPG" 
           alt="Akshit and James"
           fill
-          className="object-cover"
+          className="object-cover object-top"
           priority
         />
       </motion.div>
@@ -93,16 +93,16 @@ export default function Home() {
           </motion.nav>
 
           {/* BEEHIIV INTEGRATION */}
-          <motion.div variants={itemVariants} className="w-full mt-16 pt-12 border-t border-neutral-200">
+          <motion.div variants={itemVariants} className="w-full mt-16 pt-12 border-t border-neutral-200 mb-20">
              <h3 className="text-2xl font-serif font-bold mb-4">Thoughts in Knots</h3>
              <p className="text-neutral-600 mb-6 text-lg">A weekly letter on entropy, fiction, and suffering.</p>
              <iframe 
                src="https://subscribe-forms.beehiiv.com/8b824b9a-ba5f-426e-a4a2-f68b7d1af86c" 
                data-test-id="beehiiv-embed" 
-               height="300" 
+               height="450" 
                frameBorder="0" 
                scrolling="no" 
-               style={{ width: '100%', borderRadius: '0px', backgroundColor: 'transparent', margin: '0' }}
+               style={{ width: '100%', borderRadius: '0px', backgroundColor: 'transparent', margin: '0', height: '450px' }}
              ></iframe>
           </motion.div>
 
